@@ -44,7 +44,7 @@ def getPastWeeksPosts(subreddit):
 
 def getComments(posts):
     print("Getting comments...")
-    comments = {"Post ID" : [], "Title" : [], "Date" : [], "Comment" : []}
+    comments = {"Post ID" : [], "Title" : [], "Date" : [], "Comment" : [], "Length" : []}
     postIDs = posts["ID"]
     for i in range(len(postIDs)):
         submission = reddit.submission(id = postIDs[i])
@@ -58,6 +58,7 @@ def getComments(posts):
             comments["Title"].append(title)
             comments["Date"].append(date)
             comments["Comment"].append(commentInstance.body)
+            comments["Length"].append(len(commentInstance.body))
     return comments
 
 # Getting the results of our scraping
