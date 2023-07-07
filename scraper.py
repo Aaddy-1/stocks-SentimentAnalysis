@@ -2,10 +2,11 @@ import praw
 import os
 import pandas as pd
 from dotenv import load_dotenv
+from praw.models import MoreComments
+import datetime
 
 # loading env file
 load_dotenv('environment.env')
-
 
 reddit = praw.Reddit(client_id = os.getenv('CLIENT_ID'),
                     client_secret = os.getenv('CLIENT_SECRET'),
@@ -13,65 +14,68 @@ reddit = praw.Reddit(client_id = os.getenv('CLIENT_ID'),
 
 subreddit = reddit.subreddit("wallstreetbets")
 
-# # Display the name of the Subreddit
-# print("Display Name:", subreddit.display_name)
+def get_subreddit_info(subreddit):
+    # Display the name of the Subreddit
+    print("Display Name:", subreddit.display_name)
  
-# # Display the title of the Subreddit
-# print("Title:", subreddit.title)
+    # Display the title of the Subreddit
+    print("Title:", subreddit.title)
  
-# # Display the description of the Subreddit
-# print("Description:", subreddit.description)
+    # Display the description of the Subreddit
+    print("Description:", subreddit.description)
 
-posts_url = []
-
-for post in subreddit.hot(limit = 5):
-    print(post.title)
-    print(post.url)
-    print(post.id)
-    if (post.selftext):
-        print("contains text")
-    print()
-    posts_url.append(post.url)
-
-print(posts_url)
-
-from praw.models import MoreComments
-# comments = []
-# for url in posts_url:
-#     print(url)
-#     submission = reddit.submission(url=url)
-#     for comment in submission.comments[1:]:
-#         if isinstance(comment, MoreComments):
-#             continue
-#         comments.append(comment.body)
-# print(comments)
-
-# url = "https://v.redd.it/408dou8scy9b1"
-# id = '14q1z3k'
-# submission = reddit.submission(id = id)
-
-# posts = []
-# for top_level_comment in submission.comments[1:]:
-#     if isinstance(top_level_comment, MoreComments):
-#         continue
-#     posts.append(top_level_comment.body)
-
-# print(posts)
-
-posts_data = {"ID" : [], "url" : [], "Title" : [], "Total Comments" : [], "Score" : []}
-
-# Collecting data from the past week
-for post in subreddit.top(time_filter = "week"):
-    print(post.title)
-    posts_data["ID"].append(post.id)
-    posts_data["url"].append(post.url)
-    posts_data["Title"].append(post.title)
-    posts_data["Total Comments"].append(post.num_comments)
-    posts_data["Score"].append(post.score)
-
-print(posts_data)
+def getPastWeeksPosts(subreddit):
+    print("Getting posts...")
+    posts_data = {"ID" : [], "url" : [], "Title" : [], "Total Comments" : [], "Score" : []}
+    # Collecting data from the past week
+    for post in subreddit.top(time_filter = "week"):
+        posts_data["ID"].append(post.id)
+        posts_data["url"].append(post.url)
+        posts_data["Title"].append(post.title)
+        posts_data["Total Comments"].append(post.num_comments)
+        posts_data["Score"].append(post.score)
+    # print(posts_data)
+    
+    return posts_data
 
 # Saving the past weeks posts data into a dataframe
+# top_posts_df = pd.DataFrame(posts_data)
+# top_posts_df.to_csv("Top_This_Week.csv", index=False)
 
-top_posts_df = pd.DataFrame(posts_data)
-top_posts_df.to_csv("Top_This_Week.csv", index=False)
+def getComments(posts):
+    print("Getting comments...")
+    comments = {"Post ID" : [], "Title" : [], "Date" : [], "Comment" : []}
+    postIDs = posts["ID"]
+    for i in range(len(postIDs)):
+        submission = reddit.submission(id = postIDs[i])
+        for commentInstance in submission.comments[1:]:
+            if isinstance(commentInstance, MoreComments):
+                continue
+            id =  postIDs[i]
+            date = datetime.datetime.utcfromtimestamp(submission.created_utc)
+            title = submission.title
+            comments["Post ID"].append(id)
+            comments["Title"].append(title)
+            comments["Date"].append(date)
+            comments["Comment"].append(commentInstance.body)
+    return comments
+
+# Getting the results of our scraping
+pastWeekPosts = getPastWeeksPosts(subreddit)
+posts_df = pd.DataFrame(pastWeekPosts)
+
+pastWeekComments = getComments(pastWeekPosts)
+comments_df = pd.DataFrame(pastWeekComments)
+
+# Saving all of our scraping results into csv files
+
+# We have a file which contains information about the top posts from the past weeks
+posts_df.to_csv("PastWeekPosts.csv", index = False)
+
+# We have our primary file which contains information about all of the comments from the past week
+comments_df.to_csv("PastWeekComments.csv", index = False)
+
+print("Done")
+print("Printing information: ")
+print("Number of Posts collected: ", len(posts_df.index))
+print("Number of Comments collected: ", len(comments_df.index))
