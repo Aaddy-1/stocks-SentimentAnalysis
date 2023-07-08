@@ -4,6 +4,7 @@ import pandas as pd
 from dotenv import load_dotenv
 from praw.models import MoreComments
 import datetime
+import time
 
 # loading env file
 load_dotenv('environment.env')
@@ -24,19 +25,21 @@ def get_subreddit_info(subreddit):
     # Display the description of the Subreddit
     print("Description:", subreddit.description)
 
-def getPastWeeksPosts(subreddit):
+def getPosts(subreddit, time, limit):
     print("Getting posts...")
+    startTime = time.time()
     posts_data = {"ID" : [], "url" : [], "Title" : [], "Total Comments" : [], "Score" : []}
     # Collecting data from the past week
-    for post in subreddit.top(time_filter = "week"):
+    for post in subreddit.top(time_filter = time, limit = limit):
         posts_data["ID"].append(post.id)
         posts_data["url"].append(post.url)
         posts_data["Title"].append(post.title)
         posts_data["Total Comments"].append(post.num_comments)
         posts_data["Score"].append(post.score)
     # print(posts_data)
-    
-    return posts_data
+    endTime = time.time()
+    elapsedTime = endTime - startTime
+    return posts_data, elapsedTime
 
 # Saving the past weeks posts data into a dataframe
 # top_posts_df = pd.DataFrame(posts_data)
@@ -44,6 +47,7 @@ def getPastWeeksPosts(subreddit):
 
 def getComments(posts):
     print("Getting comments...")
+    startTime = time.time()
     comments = {"Post ID" : [], "Title" : [], "Date" : [], "Comment" : [], "Length" : []}
     postIDs = posts["ID"]
     for i in range(len(postIDs)):
@@ -59,14 +63,23 @@ def getComments(posts):
             comments["Date"].append(date)
             comments["Comment"].append(commentInstance.body)
             comments["Length"].append(len(commentInstance.body))
-    return comments
+    endTime = time.time()
+    timeElapsed = endTime - startTime
 
-# Getting the results of our scraping
-pastWeekPosts = getPastWeeksPosts(subreddit)
-posts_df = pd.DataFrame(pastWeekPosts)
+
+    return comments, timeElapsed
+
+pastWeekPosts = getPosts(subreddit, "month", 1000)
+posts_df, timeTaken = pd.DataFrame(pastWeekPosts)
+print("Done")
+print("Time taken: ", timeTaken)
+print("Number of Posts collected: ", len(posts_df.index))
 
 pastWeekComments = getComments(pastWeekPosts)
-comments_df = pd.DataFrame(pastWeekComments)
+comments_df, timeTaken = pd.DataFrame(pastWeekComments)
+print("Done")
+print("Time taken: ", timeTaken)
+print("Number of Comments collected: ", len(comments_df.index))
 
 # Saving all of our scraping results into csv files
 
@@ -75,8 +88,3 @@ posts_df.to_csv("PastWeekPosts.csv", index = False)
 
 # We have our primary file which contains information about all of the comments from the past week
 comments_df.to_csv("PastWeekComments.csv", index = False)
-
-print("Done")
-print("Printing information: ")
-print("Number of Posts collected: ", len(posts_df.index))
-print("Number of Comments collected: ", len(comments_df.index))
