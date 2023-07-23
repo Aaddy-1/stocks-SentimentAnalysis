@@ -25,12 +25,12 @@ def get_subreddit_info(subreddit):
     # Display the description of the Subreddit
     print("Description:", subreddit.description)
 
-def getPosts(subreddit, time, limit):
+def getPosts(subreddit, time_filter, limit):
     print("Getting posts...")
     startTime = time.time()
     posts_data = {"ID" : [], "url" : [], "Title" : [], "Total Comments" : [], "Score" : []}
     # Collecting data from the past week
-    for post in subreddit.top(time_filter = time, limit = limit):
+    for post in subreddit.top(time_filter = time_filter, limit = limit):
         posts_data["ID"].append(post.id)
         posts_data["url"].append(post.url)
         posts_data["Title"].append(post.title)
@@ -69,22 +69,22 @@ def getComments(posts):
 
     return comments, timeElapsed
 
-pastWeekPosts = getPosts(subreddit, "month", 1000)
-posts_df, timeTaken = pd.DataFrame(pastWeekPosts)
+pastWeekPosts, timeTaken = getPosts(subreddit, "month", 1000)
+posts_df = pd.DataFrame(pastWeekPosts)
 print("Done")
 print("Time taken: ", timeTaken)
 print("Number of Posts collected: ", len(posts_df.index))
 
-pastWeekComments = getComments(pastWeekPosts)
-comments_df, timeTaken = pd.DataFrame(pastWeekComments)
+pastWeekComments, timeTaken = getComments(pastWeekPosts)
+comments_df = pd.DataFrame(pastWeekComments)
 print("Done")
 print("Time taken: ", timeTaken)
 print("Number of Comments collected: ", len(comments_df.index))
 
 # Saving all of our scraping results into csv files
 # We have a file which contains information about the top posts from the past weeks
-current_datetime = datetime.now().strftime("%Y-%m-%d")
-str_current_datetime = str(current_datetime)
+current_datetime = datetime.date.today()
+str_current_datetime = current_datetime.strftime('%m/%d/%Y')
 
 posts_df.to_csv("redditData/Posts/Posts[" + str_current_datetime + "].csv", index = False)
 
