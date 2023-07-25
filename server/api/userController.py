@@ -28,7 +28,7 @@ classifier = model.init_model()
 # tesla_df, apple_df, nvda_df, google_df, amzn_df, msft_df, meta_df
 labels, values = service.get_data(classifier)
 
-@app.route('/get', methods=['GET'])
+@app.route('/', methods=['GET'])
 def get():
     
     # return data
