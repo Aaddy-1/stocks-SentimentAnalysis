@@ -3,21 +3,26 @@ import service
 import os
 from flask import Flask, render_template
 from dotenv import load_dotenv
-sys.path.insert(0, '/Users/aadeesh/redditSentiment/server/model')
+from pathlib import Path
+SERVER_FOLDER = Path(__file__).parent.parent.resolve()
+template_folder = SERVER_FOLDER / "template"
+model_folder = SERVER_FOLDER / "model"
+
+sys.path.insert(0, model_folder)
 import model
 from modelClasses import textTransformer, customModel
-from pathlib import Path
-THIS_FOLDER = Path(__file__).parent.resolve()
-my_file = THIS_FOLDER / "myfile.txt"
 
 
 
-load_dotenv('/Users/aadeesh/redditSentiment/environment.env')
+
+
+
+# load_dotenv('/Users/aadeesh/redditSentiment/environment.env')
 
 
 app = Flask(__name__, static_url_path='',
             static_folder='static',
-            template_folder='/Users/aadeesh/redditSentiment/server/template')
+            template_folder=template_folder)
 classifier = model.init_model()
 
 # tesla_df, apple_df, nvda_df, google_df, amzn_df, msft_df, meta_df
@@ -28,8 +33,9 @@ def get():
     
     # return data
     # return render_template("home.html")
-    print(labels)
-    print(values)
+    print("HELLO HELLO HELLO ")
+    # print(labels)
+    # print(values)
     return render_template(
         template_name_or_list='sentiment_charts.html',
         tesla_vals = values[0],
@@ -44,4 +50,4 @@ def get():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port = os.getenv('PORT'))
+    app.run(debug=True, port = 8080)
