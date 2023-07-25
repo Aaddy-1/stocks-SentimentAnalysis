@@ -28,7 +28,7 @@ userController = Flask(__name__, static_url_path='',
 # tesla_df, apple_df, nvda_df, google_df, amzn_df, msft_df, meta_df
 labels, values = service.get_data()
 
-@app.route('/', methods=['GET'])
+@userController.route('/', methods=['GET'])
 def get():
     
     # return data
