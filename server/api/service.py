@@ -1,6 +1,11 @@
 import sys
-sys.path.insert(0, '/Users/aadeesh/redditSentiment/server/model')
-from modelClasses import textTransformer, customModel
+from pathlib import Path
+SERVER_FOLDER = Path(__file__).parent.parent.resolve()
+data_folder = SERVER_FOLDER / "Data/redditData/Posts/processed_df.csv"
+
+
+# sys.path.insert(0, '/Users/aadeesh/redditSentiment/server/model')
+# from modelClasses import textTransformer, customModel
 import pandas as pd
 import numpy as np
 
@@ -107,7 +112,7 @@ def get_data(classifier):
     # df = pd.read_csv("/Users/aadeesh/redditSentiment/server/Data/redditData/Posts/post.csv")
     
     # filtered_df = dataframeProcessor(df, classifier)
-    filtered_df = pd.read_csv('/Users/aadeesh/redditSentiment/server/Data/redditData/Posts/processed_df.csv')
+    filtered_df = pd.read_csv(data_folder)
     return_list = jsonBuilder(filtered_df)
 
     # tesla_df, apple_df, nvda_df, google_df, amzn_df, msft_df, meta_df
