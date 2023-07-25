@@ -6,6 +6,11 @@ from dotenv import load_dotenv
 sys.path.insert(0, '/Users/aadeesh/redditSentiment/server/model')
 import model
 from modelClasses import textTransformer, customModel
+from pathlib import Path
+THIS_FOLDER = Path(__file__).parent.resolve()
+my_file = THIS_FOLDER / "myfile.txt"
+
+
 
 load_dotenv('/Users/aadeesh/redditSentiment/environment.env')
 
