@@ -20,7 +20,7 @@ model_folder = SERVER_FOLDER / "model"
 # load_dotenv('/Users/aadeesh/redditSentiment/environment.env')
 
 
-app = Flask(__name__, static_url_path='',
+userController = Flask(__name__, static_url_path='',
             static_folder='static',
             template_folder=template_folder)
 # classifier = model.init_model()
@@ -50,4 +50,4 @@ def get():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port = 8080)
+    userController.run(debug=True, port = 8080)
