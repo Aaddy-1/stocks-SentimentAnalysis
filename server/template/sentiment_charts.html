@@ -7,7 +7,7 @@
 </head>
  
 <body>
-    <div style="height: 50vh; width: 90%;">
+    <div style="height: 50vh; width: 95%;">
         <canvas id="chart1"></canvas>
     </div>
     <div style="height: 50vh; width: 90%;">
@@ -44,9 +44,9 @@
         labels: {{labels | tojson}},
         datasets: [
             {
-                label: '$TSLA Sentiment Graph',
+                label: '$TSLA Sentiment Rating',
                 data: {{tesla_vals | tojson}},
-                borderColor: 'rgba(75, 192, 192, 1)',
+                borderColor: 'rgba(0, 0, 0, 0.5)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
                 tension: 0.3,
            }
