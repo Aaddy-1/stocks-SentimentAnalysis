@@ -108,7 +108,7 @@ def jsonBuilder(filtered_df):
                 meta_df[date_string] += val
     return [tesla_df, apple_df, nvda_df, google_df, amzn_df, msft_df, meta_df]
 
-def get_data(classifier):
+def get_data():
     # df = pd.read_csv("/Users/aadeesh/redditSentiment/server/Data/redditData/Posts/post.csv")
     
     # filtered_df = dataframeProcessor(df, classifier)
