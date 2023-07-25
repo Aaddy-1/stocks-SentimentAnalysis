@@ -10,6 +10,7 @@
     <div style="height: 50vh; width: 95%;">
         <canvas id="chart1"></canvas>
     </div>
+    <div style="height: 10vh"></div>
     <div style="height: 50vh; width: 90%;">
         <canvas id="chart2"></canvas>
     </div>
@@ -37,7 +38,7 @@
                 animation: {
                     duration: 1500, // Animation duration in milliseconds
                     easing: 'easeInOutQuart', // Animation easing functio
-                }
+                },
             }
 
         var data1 = {
@@ -46,8 +47,8 @@
             {
                 label: '$TSLA Sentiment Rating',
                 data: {{tesla_vals | tojson}},
-                borderColor: 'rgba(0, 0, 0, 0.5)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(240, 52, 52, 1)',
+                backgroundColor: 'rgb(192,192,192)',
                 tension: 0.3,
            }
         ]
@@ -71,8 +72,8 @@
             {
                 label: '$AAPL Sentiment Graph',
                 data: {{apple_vals | tojson}},
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgb(192, 192, 192)',
+                backgroundColor: 'rgb(0, 0, 0)',
                 tension: 0.3,
             }
         ]
@@ -96,8 +97,8 @@
             {
                 label: '$NVDA Sentiment Graph',
                 data: {{nvda_vals | tojson}},
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgb(57, 255, 70)',
+                backgroundColor: 'rgb(0, 0, 0)',
                 tension: 0.3,
             }
         ]
@@ -121,8 +122,8 @@
             {
                 label: '$GOOGL Sentiment Graph',
                 data: {{google_vals | tojson}},
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgb(66, 133, 244)',
+                backgroundColor: 'rgb(244, 180, 0)',
                 tension: 0.3,
             }
         ]
@@ -146,8 +147,8 @@
             {
                 label: '$AMZN Sentiment Graph',
                 data: {{amzn_vals | tojson}},
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgb(255,165,0)',
+                backgroundColor: 'rgb(0, 0, 0)',
                 tension: 0.3,
             }
         ]
