@@ -3,6 +3,7 @@ import keras
 import dill as pickle
 from modelClasses import textTransformer, customModel
 import numpy as np
+from pathlib import Path
 
 def load_pipeline_keras(cleaner, model, tokenizer, folder_name="model"):
     cleaner = pickle.load(open(cleaner,'rb'))

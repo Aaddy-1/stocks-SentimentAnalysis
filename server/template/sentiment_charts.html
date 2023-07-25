@@ -3,7 +3,7 @@
  
 <head>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Chartjs Charts</title>
+    <title>Sentiments</title>
 </head>
  
 <body>
@@ -50,6 +50,7 @@
                 borderColor: 'rgba(240, 52, 52, 1)',
                 backgroundColor: 'rgb(192,192,192)',
                 tension: 0.3,
+                pointRadius: 5
            }
         ]
         };
@@ -62,7 +63,7 @@
         };
  
         const chart1 = new Chart(
-            document.getElementById('chart1'),
+            document.getElementById('chart2'),
             config1
         );
 
@@ -75,6 +76,7 @@
                 borderColor: 'rgb(192, 192, 192)',
                 backgroundColor: 'rgb(0, 0, 0)',
                 tension: 0.3,
+                pointRadius: 5
             }
         ]
         };
@@ -86,7 +88,7 @@
         };
  
         const chart2 = new Chart(
-            document.getElementById('chart2'),
+            document.getElementById('chart1'),
             // "data" : data2,
             config2
         );
@@ -95,11 +97,12 @@
         labels: {{labels | tojson}},
         datasets: [
             {
-                label: '$NVDA Sentiment Graph',
+                label: '$NVDA Sentiment Rating',
                 data: {{nvda_vals | tojson}},
                 borderColor: 'rgb(57, 255, 70)',
                 backgroundColor: 'rgb(0, 0, 0)',
                 tension: 0.3,
+                pointRadius: 5
             }
         ]
         };
@@ -120,11 +123,12 @@
         labels: {{labels | tojson}},
         datasets: [
             {
-                label: '$GOOGL Sentiment Graph',
+                label: '$GOOGL Sentiment Rating',
                 data: {{google_vals | tojson}},
-                borderColor: 'rgb(66, 133, 244)',
-                backgroundColor: 'rgb(244, 180, 0)',
+                borderColor: 'rgb(15, 157, 88)',
+                backgroundColor: 'rgb(144, 238, 144)',
                 tension: 0.3,
+                pointRadius: 5
             }
         ]
         };
@@ -137,7 +141,7 @@
         };
  
         const chart4 = new Chart(
-            document.getElementById('chart4'),
+            document.getElementById('chart7'),
             config4
         );
 
@@ -145,11 +149,12 @@
         labels: {{labels | tojson}},
         datasets: [
             {
-                label: '$AMZN Sentiment Graph',
+                label: '$AMZN Sentiment Rating',
                 data: {{amzn_vals | tojson}},
                 borderColor: 'rgb(255,165,0)',
                 backgroundColor: 'rgb(0, 0, 0)',
                 tension: 0.3,
+                pointRadius: 5
             }
         ]
         };
@@ -162,7 +167,7 @@
         };
  
         const chart5 = new Chart(
-            document.getElementById('chart5'),
+            document.getElementById('chart4'),
             config5
         );
 
@@ -170,11 +175,12 @@
         labels: {{labels | tojson}},
         datasets: [
             {
-                label: '$MSFT sentiment graph',
+                label: '$MSFT Sentiment Rating',
                 data: {{msft_vals | tojson}},
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgb(242, 80, 34)',
+                backgroundColor: 'rgb(0, 164, 239)',
                 tension: 0.3,
+                pointRadius: 5
             }
         ]
         };
@@ -195,11 +201,12 @@
         labels: {{labels | tojson}},
         datasets: [
             {
-                label: '$META sentiment graph' ,
+                label: '$META Sentiment Rating' ,
                 data: {{meta_vals | tojson}},
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgb(0, 128, 251)',
+                backgroundColor: 'rgb(6, 104, 225)',
                 tension: 0.3,
+                pointRadius: 5
             }
         ]
         };
@@ -212,7 +219,7 @@
         };
  
         const chart7 = new Chart(
-            document.getElementById('chart7'),
+            document.getElementById('chart5'),
             config7
         ); 
     </script>
