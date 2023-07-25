@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Chartjs Charts</title>
+</head>
+ 
+<body>
+    <div style="height: 50vh; width: 90%;">
+        <canvas id="chart1"></canvas>
+    </div>
+    <div style="height: 50vh; width: 90%;">
+        <canvas id="chart2"></canvas>
+    </div>
+    <div style="height: 50vh; width: 90%;">
+        <canvas id="chart3"></canvas>
+    </div>
+    <div style="height: 50vh; width: 90%;">
+        <canvas id="chart4"></canvas>
+    </div>
+    <div style="height: 50vh; width: 90%;">
+        <canvas id="chart5"></canvas>
+    </div>
+    <div style="height: 50vh; width: 90%;">
+        <canvas id="chart6"></canvas>
+    </div><div style="height: 50vh; width: 90%;">
+        <canvas id="chart7"></canvas>
+    </div>
+ 
+    <script>
+        // console.log(tesla_vals)
+        const options = {
+                maintainAspectRatio: false,
+                scaleShowVerticalLines: false,
+                
+                animation: {
+                    duration: 1500, // Animation duration in milliseconds
+                    easing: 'easeInOutQuart', // Animation easing functio
+                }
+            }
+
+        var data1 = {
+        labels: {{labels | tojson}},
+        datasets: [
+            {
+                label: '$TSLA Sentiment Graph',
+                data: {{tesla_vals | tojson}},
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.3,
+           }
+        ]
+        };
+
+ 
+        const config1 = {
+            type: 'line',
+            data: data1,
+            options: options
+        };
+ 
+        const chart1 = new Chart(
+            document.getElementById('chart1'),
+            config1
+        );
+
+        var data2 = {
+        labels: {{labels | tojson}},
+        datasets: [
+            {
+                label: '$AAPL Sentiment Graph',
+                data: {{apple_vals | tojson}},
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.3,
+            }
+        ]
+        };
+
+        const config2 = {
+            type: 'line',
+            data: data2,
+            options: options
+        };
+ 
+        const chart2 = new Chart(
+            document.getElementById('chart2'),
+            // "data" : data2,
+            config2
+        );
+
+        var data3 = {
+        labels: {{labels | tojson}},
+        datasets: [
+            {
+                label: '$NVDA Sentiment Graph',
+                data: {{nvda_vals | tojson}},
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.3,
+            }
+        ]
+        };
+
+ 
+        const config3 = {
+            type: 'line',
+            data: data3,
+            options: options
+        };
+ 
+        const chart3 = new Chart(
+            document.getElementById('chart3'),
+            config3
+        );
+
+        var data4 = {
+        labels: {{labels | tojson}},
+        datasets: [
+            {
+                label: '$GOOGL Sentiment Graph',
+                data: {{google_vals | tojson}},
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.3,
+            }
+        ]
+        };
+
+ 
+        const config4 = {
+            type: 'line',
+            data: data4,
+            options: options
+        };
+ 
+        const chart4 = new Chart(
+            document.getElementById('chart4'),
+            config4
+        );
+
+        var data5 = {
+        labels: {{labels | tojson}},
+        datasets: [
+            {
+                label: '$AMZN Sentiment Graph',
+                data: {{amzn_vals | tojson}},
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.3,
+            }
+        ]
+        };
+
+ 
+        const config5 = {
+            type: 'line',
+            data: data5,
+            options: options
+        };
+ 
+        const chart5 = new Chart(
+            document.getElementById('chart5'),
+            config5
+        );
+
+        var data6 = {
+        labels: {{labels | tojson}},
+        datasets: [
+            {
+                label: '$MSFT sentiment graph',
+                data: {{msft_vals | tojson}},
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.3,
+            }
+        ]
+        };
+
+ 
+        const config6 = {
+            type: 'line',
+            data: data6,
+            options: options
+        };
+ 
+        const chart6 = new Chart(
+            document.getElementById('chart6'),
+            config6
+        );
+
+        var data7 = {
+        labels: {{labels | tojson}},
+        datasets: [
+            {
+                label: '$META sentiment graph' ,
+                data: {{meta_vals | tojson}},
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                tension: 0.3,
+            }
+        ]
+        };
+
+ 
+        const config7 = {
+            type: 'line',
+            data: data7,
+            options: options
+        };
+ 
+        const chart7 = new Chart(
+            document.getElementById('chart7'),
+            config7
+        ); 
+    </script>
+</body>
+</html>
