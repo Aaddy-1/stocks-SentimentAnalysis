@@ -23,7 +23,7 @@ model_folder = SERVER_FOLDER / "model"
 app = Flask(__name__, static_url_path='',
             static_folder='static',
             template_folder=template_folder)
-classifier = model.init_model()
+# classifier = model.init_model()
 
 # tesla_df, apple_df, nvda_df, google_df, amzn_df, msft_df, meta_df
 labels, values = service.get_data(classifier)
