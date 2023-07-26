@@ -6,7 +6,6 @@ from dotenv import load_dotenv
 from pathlib import Path
 SERVER_FOLDER = Path(__file__).parent.parent.resolve()
 template_folder = SERVER_FOLDER / "template"
-model_folder = SERVER_FOLDER / "model"
 
 # sys.path.insert(0, model_folder)
 # import model
