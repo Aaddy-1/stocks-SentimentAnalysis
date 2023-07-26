@@ -77,7 +77,7 @@ posts_df = pd.DataFrame(pastWeekPosts)
 print("Done")
 print("Time taken: ", timeTaken)
 print("Number of Posts collected: ", len(posts_df.index))
-file = "/Users/aadeesh/redditSentiment/redditData/Posts/post.csv"
+file = "server/Data/redditData/post.csv"
 posts_df.to_csv(file, index = False)
 
 pastWeekComments, timeTaken = getComments(pastWeekPosts)
@@ -85,6 +85,6 @@ comments_df = pd.DataFrame(pastWeekComments)
 print("Done")
 print("Time taken: ", timeTaken)
 print("Number of Comments collected: ", len(comments_df.index))
-file = "/Users/aadeesh/redditSentiment/redditData/Posts/post.csv"
+file = "server/Data/redditData/comment.csv"
 comments_df.to_csv(file, index = False)
 
