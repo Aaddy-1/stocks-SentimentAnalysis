@@ -1,6 +1,6 @@
-# stocks-SentimentAnalysis
+# SentiStocks
 # Introduction  
-The Reddit Stock Sentiment Analysis project is designed to scrape Reddit comments related to various stocks, perform sentiment analysis using a machine learning program, and then visualize the sentiment results. This project aims to provide insights into the overall sentiment of Reddit users towards specific stocks, helping investors and traders gauge public sentiment.
+This stock sentiment analysis project is designed to scrape Reddit comments related to various stocks in order to gauge market sentiment towards these brands. This project aims to provide insights into the overall sentiment of online users towards specific stocks, which helps investors and traders gauge public sentiment on any company before investing. This tool can be invaluable for companies who are wanting to gauge public perception about their brand in the context of the financial markets.
 # How it works
 1. The scraper scrapes reddit comments from every post for the past one month from the subreddit [r/wallstreetbets](https://www.reddit.com/r/wallstreetbets/).
 2. It then filters the data based on various keywords related to the stocks being tracked.
