@@ -12,6 +12,6 @@ This stock sentiment analysis project is designed to scrape Reddit comments rela
 8. The data for the sentiment score for each stock from each day from the past month is then graphed using Chart.JS
 
 # Demo
-I am working on a live demo that streams real-time sentiment values for the stocks. The real-time streaming isn't active yet but will be very soon. However, plots for historic values of the sentiment of the stocks are available in the live demo. Please note that it may take upto 2 minutes to render the webpage due to renders restrictions. (https://stockssentimentanalysis.onrender.com/)
+I am working on a live demo that streams real-time sentiment values for the stocks. The real-time streaming isn't active yet but will be very soon. However, plots for historic values of the sentiment of the stocks are available in the live demo. ([Check out the live demo](https://sentistocks-production.up.railway.app/))
 # <img width="1297" alt="Screenshot 2023-07-27 at 1 09 20 AM" src="https://github.com/Aaddy-1/stocks-SentimentAnalysis/assets/83650351/43104302-0db4-4d68-ad76-97e0235ea149">
 
