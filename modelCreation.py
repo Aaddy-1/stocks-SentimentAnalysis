@@ -290,7 +290,7 @@ print("Recall:", recall)
 print("F1 Score:", f1)
 print("Confusion Matrix:")
 print(conf_matrix)
-
+# Copnfusion matrix
 import pickle
 import os
 
