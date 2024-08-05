@@ -305,3 +305,4 @@ def save_pipeline_keras(model,folder_name="model"):
     # pickle.dump(model.named_steps['model'].model, open(folder_name + '/' + 'model.h5', 'wb'))
 
 save_pipeline_keras(pipeline, 'finalPipeline')
+print("saved pipeline")

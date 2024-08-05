@@ -1,3 +1,7 @@
+# THIS FILE TRANSFORMS A GIVEN DATAFRAME INTO THE REQUIRED FORMAT
+# AFTER TRANSFORMING THE DATAFRAME, IT ALSO RUNS THE ML MODEL ON THE TRANSFORMED DATA
+# AFTER RUNNING THE MODEL, IT ADDS A NEW COLUMN CONTAINING THE SENTIMENT OF EACH LINE
+
 import pandas as pd
 from pathlib import Path
 SERVER_FOLDER = Path(__file__).parent.parent.resolve()
@@ -149,6 +153,7 @@ def init_model():
     return classifier
 
 classifier = init_model()
+print("imported")
 
 
 def dataframeProcessor(df, classifier):
